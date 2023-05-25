@@ -4,9 +4,11 @@ import axios from "axios";
 
 const TodoUpdateForm = () => {
   const { TodoId } = useParams();
+  // tracking user inputs
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
+  // get the user token
   const user = localStorage.getItem("user");
   const token = JSON.parse(user).token;
 

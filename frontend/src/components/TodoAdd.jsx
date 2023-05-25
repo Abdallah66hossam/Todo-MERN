@@ -5,8 +5,10 @@ import { addTodos } from "../redux/todosSlice";
 
 const TodoAdd = () => {
   const dispatch = useDispatch();
+  // tracking user inputs
   const [title, setTodo] = useState("");
   const [description, setDescription] = useState("");
+  // get the token from user
   const user = localStorage.getItem("user");
   const token = JSON.parse(user).token;
   const addTodo = async (event) => {

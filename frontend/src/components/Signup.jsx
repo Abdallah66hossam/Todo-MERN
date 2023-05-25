@@ -20,6 +20,7 @@ const Signup = () => {
       );
       if (response.status === 200) {
         localStorage.setItem("user", JSON.stringify(response.data));
+        // checking if return value is error
         const error = localStorage.getItem("user");
         if (JSON.parse(error).error) {
           setError(JSON.parse(error).error);
@@ -28,6 +29,7 @@ const Signup = () => {
 
         setEmail("");
         setPassword("");
+        // if there is no error got to home page
         navigate("/");
       }
     } catch (err) {
