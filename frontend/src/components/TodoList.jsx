@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 const TodoList = () => {
   const dispatch = useDispatch();
   const todos = GetTodos();
+  const user = localStorage.getItem("user");
+  const token = JSON.parse(user).token;
   return (
     <>
       {todos?.map((todo) => {
@@ -34,7 +36,12 @@ const TodoList = () => {
                   className="flex-no-shrink p-2 ml-6 border-2 rounded bg-red-500 border-red-500 duration-100 text-white"
                   onClick={async () => {
                     await axios.delete(
-                      `http://localhost:8080/api/todos/${todo._id}`
+                      `http://localhost:8080/api/todos/${todo._id}`,
+                      {
+                        headers: {
+                          'Authorization': `Bearer ${token}`,
+                        },
+                      }
                     );
                     dispatch(deleteTodos(todo._id));
                   }}

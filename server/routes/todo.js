@@ -5,8 +5,12 @@ const {
   deleteTodo,
   updateTodo,
 } = require("../controller/todoListController");
+const requireAuth = require("../middleware/verfiyAuth");
 
 const todoRouter = express.Router();
+
+// require auth for all workout routes
+todoRouter.use(requireAuth);
 
 // GET all Todos
 todoRouter.get("/", getTodos);

@@ -7,12 +7,22 @@ const TodoAdd = () => {
   const dispatch = useDispatch();
   const [title, setTodo] = useState("");
   const [description, setDescription] = useState("");
+  const user = localStorage.getItem("user");
+  const token = JSON.parse(user).token;
   const addTodo = async (event) => {
     event.preventDefault();
-    const newTodo = await axios.post("http://localhost:8080/api/todos", {
-      title,
-      description,
-    });
+    const newTodo = await axios.post(
+      "http://localhost:8080/api/todos",
+      {
+        title,
+        description,
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      }
+    );
     dispatch(addTodos(newTodo.data));
     setTodo("");
     setDescription("");

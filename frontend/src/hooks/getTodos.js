@@ -6,12 +6,19 @@ import { getTodos } from "../redux/todosSlice";
 const GetTodos = () => {
   const todos = useSelector((state) => state.todos.todos);
   const dispatch = useDispatch();
+  const user = localStorage.getItem("user");
+  const token = JSON.parse(user).token;
   useEffect(() => {
     const fetchTodos = async () => {
-      await axios.get("http://localhost:8080/api/todos").then((response) => {
-        dispatch(getTodos(response.data));
-        console.log(response.data);
-      });
+      await axios
+        .get("http://localhost:8080/api/todos", {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          dispatch(getTodos(response.data));
+        });
     };
     fetchTodos();
   }, [dispatch]);

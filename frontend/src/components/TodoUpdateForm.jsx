@@ -7,12 +7,18 @@ const TodoUpdateForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
+  const user = localStorage.getItem("user");
+  const token = JSON.parse(user).token;
 
   const handelSubmit = async (event) => {
     event.preventDefault();
     await axios.patch(`http://localhost:8080/api/todos/${TodoId}`, {
       title,
       description,
+    },{
+      headers:{
+        'Authorization': `Bearer ${token}`
+      }
     });
     navigate("/");
   };

@@ -14,17 +14,19 @@ const loginUser = asyncHandler(async (req, res) => {
 
   try {
     const user = await User.findOne({ email });
-    if (!user) return res.json({ error: "emaill or password is not correct" });
-
-    const match = bcrypt.compare(password, user.password);
+    const match = await bcrypt.compare(password, user.password);
     if (!match) return res.json({ error: "password is incorrect" });
+    if (!user)
+      return res
+        .status(400)
+        .json({ error: "emaill or password is not correct" });
 
     // create a token
     const token = createToken(user._id);
 
     res.status(200).json({ email, password, token });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(400).json({ error: "error while signing in" });
   }
 });
 
