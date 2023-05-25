@@ -4,8 +4,8 @@
 
 ### Funcionality: 
 
-** * Full CRUD app operation **
-** * Authentication & Authorization with (JWT) **
+**  Full CRUD app operation **
+**  Authentication & Authorization with (JWT) **
 
 ### technologies:
 
