@@ -12,7 +12,7 @@ const Signup = () => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        `http://localhost:8080/api/auth/signup`,
+        `https://todo-list-uzyg.onrender.com/api/auth/signup`,
         {
           email,
           password,

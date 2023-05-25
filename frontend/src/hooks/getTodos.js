@@ -7,11 +7,13 @@ const GetTodos = () => {
   const todos = useSelector((state) => state.todos.todos);
   const dispatch = useDispatch();
   const user = localStorage.getItem("user");
+
   const token = JSON.parse(user).token;
   useEffect(() => {
+    if(!user) return;
     const fetchTodos = async () => {
       await axios
-        .get("http://localhost:8080/api/todos", {
+        .get("https://todo-list-uzyg.onrender.com/api/todos", {
           headers: {
             'Authorization': `Bearer ${token}`,
           },
@@ -21,7 +23,7 @@ const GetTodos = () => {
         });
     };
     fetchTodos();
-  }, [dispatch]);
+  }, [dispatch])
   return todos;
 };
 

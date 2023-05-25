@@ -36,7 +36,7 @@ const TodoList = () => {
                   className="flex-no-shrink p-2 ml-6 border-2 rounded bg-red-500 border-red-500 duration-100 text-white"
                   onClick={async () => {
                     await axios.delete(
-                      `http://localhost:8080/api/todos/${todo._id}`,
+                      `https://todo-list-uzyg.onrender.com/api/todos/${todo._id}`,
                       {
                         headers: {
                           'Authorization': `Bearer ${token}`,

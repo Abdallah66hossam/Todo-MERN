@@ -14,7 +14,7 @@ const TodoAdd = () => {
   const addTodo = async (event) => {
     event.preventDefault();
     const newTodo = await axios.post(
-      "http://localhost:8080/api/todos",
+      "https://todo-list-uzyg.onrender.com/api/todos",
       {
         title,
         description,
